@@ -1,0 +1,18 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        dik = {"I" : 1, "V" : 5, "X" : 10, "L" : 50, "C" : 100, "D" : 500, "M" : 1000}
+        l, r = 0, 1
+        total = 0
+        while r < len(s):
+            if dik[s[r]] > dik[s[l]]:
+                total += dik[s[r]] - dik[s[l]]
+                l += 2
+                r += 2
+            else:
+                total += dik[s[l]]
+                l += 1
+                r += 1
+        while l < len(s):
+            total += dik[s[l]]
+            l += 1
+        return total
